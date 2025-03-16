@@ -19,8 +19,13 @@ class RecipeDetailViewModel : ViewModel() {
 
     fun getRecipe(recipeId: String) {
         viewModelScope.launch {
-            getRecipeByIdUseCase(recipeId).collect { recipe ->
-                _recipe.value = recipe
+            try {
+                getRecipeByIdUseCase(recipeId).collect { recipe ->
+                    _recipe.value = recipe
+                }
+            } catch (e: Exception) {
+                _recipe.value = null // Handle error by clearing recipe
+                // Optionally log the error or notify UI
             }
         }
     }

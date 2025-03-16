@@ -1,5 +1,6 @@
 package com.example.food2forkellm.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food2forkellm.data.remote.NetworkModule
@@ -19,8 +20,15 @@ class RecipeListViewModel : ViewModel() {
 
     fun searchRecipes(query: String) {
         viewModelScope.launch {
-            searchRecipesUseCase(query).collect { recipes ->
-                _recipes.value = recipes
+            try {
+                Log.d("RecipeListViewModel", "Searching for: $query")
+                searchRecipesUseCase(query).collect { recipes ->
+                    Log.d("RecipeListViewModel", "Found ${recipes.size} recipes")
+                    _recipes.value = recipes
+                }
+            } catch (e: Exception) {
+                Log.e("RecipeListViewModel", "Error searching recipes: ${e.message}")
+                _recipes.value = emptyList()
             }
         }
     }

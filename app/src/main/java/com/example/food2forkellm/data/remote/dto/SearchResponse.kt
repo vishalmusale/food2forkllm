@@ -6,9 +6,13 @@ data class SearchResponse(
 )
 
 data class RecipeDto(
-    val recipeId: String,
+    val recipeId: String?, // Changed to nullable
     val title: String,
     val publisher: String,
     val imageUrl: String,
     val ingredients: List<String>? = null
+)
+
+data class RecipeResponse(
+    val recipe: RecipeDto
 )
