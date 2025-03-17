@@ -80,6 +80,10 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
+    //  Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.okhttp.mockwebserver)
