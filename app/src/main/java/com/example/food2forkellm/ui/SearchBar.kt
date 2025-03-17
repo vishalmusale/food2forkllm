@@ -30,7 +30,7 @@ fun SearchBar(onSearch: (String) -> Unit) {
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it },
-                label = { Text("Search for recipes") },
+                label = { Text("Search for a category...") },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(
                     onSearch = {
