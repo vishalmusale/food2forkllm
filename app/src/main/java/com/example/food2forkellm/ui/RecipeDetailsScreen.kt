@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
@@ -26,41 +25,47 @@ fun RecipeDetailsScreen(recipeDetails: RecipeDetails, onBackClick: () -> Unit) {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column {
-                Spacer(modifier = Modifier.padding(20.dp))
+        Column {
+            Spacer(modifier = Modifier.padding(20.dp))
 
-                Text(
-                    text = recipeDetails.title,
-                    fontSize = 24.sp,
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
+            Text(
+                text = recipeDetails.title,
+                fontSize = 24.sp,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
 
-                Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(10.dp))
 
-                AsyncImage(
-                    model = recipeDetails.imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth()
-                )
+            AsyncImage(
+                model = recipeDetails.imageUrl,
+                contentDescription = null,
+                modifier = Modifier.fillMaxWidth()
+            )
 
-                Text(text = "Ingredients:", fontSize = 20.sp, modifier = Modifier.padding(vertical = 8.dp))
-                recipeDetails.ingredients.forEach { ingredient ->
-                    Text(text = "- $ingredient", fontSize = 16.sp, modifier = Modifier.padding(vertical = 4.dp))
-                }
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            Text(text = "Ingredients:", fontSize = 20.sp, modifier = Modifier.padding(vertical = 8.dp))
+            recipeDetails.ingredients.forEach { ingredient ->
+                Text(text = "- $ingredient", fontSize = 16.sp, modifier = Modifier.padding(vertical = 4.dp))
             }
+        }
 
-            Row {
+        Column {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
                 Button(
-                    modifier = Modifier.align(Alignment.CenterVertically).fillMaxWidth(),
+                    modifier = Modifier.align(Alignment.CenterVertically),
                     onClick = onBackClick) {
-                    Text(text = "Back")
+                    Text(text = "Back", fontSize = 20.sp)
                 }
             }
+
+            Spacer(modifier = Modifier.padding(20.dp))
         }
     }
 }

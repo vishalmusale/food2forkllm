@@ -3,7 +3,6 @@ package com.example.food2forkellm.data.network
 import com.example.food2forkellm.utils.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.getValue
 
 object RetrofitInstance {
     val api: RecipeApi by lazy {
